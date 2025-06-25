@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora Simple</title>
     <style>
-        /* Estilos para los colores del resultado */
+        /* agregamos colores para identificar la operacion (esto es pasajero ) */
         .resultado-suma { color: blue; }
         .resultado-resta { color: green; }
         .resultado-multiplicacion { color: purple; }
         .resultado-division { color: red; }
-        .resultado-defecto { color: black; } /* Renombrado */
-        .resultado-error { color: orange; font-weight: bold; } /* Estilo para errores */
+        .resultado-defecto { color: black; } 
+        .resultado-error { color: orange; font-weight: bold; } /*  para errores */
     </style>
 </head>
 <body>
@@ -36,7 +36,7 @@
         </div>
     
     <script>
-        // Función principal para realizar la operación
+        /* Funcio operación */
         function realizarOperacion() {
             const valorSeleccionado = document.getElementById('selectorOperacion').value;
             const num1 = +document.getElementById('numero1').value;
@@ -45,59 +45,55 @@
             let resultado = 0;
             let claseColor = 'resultado-defecto';
 
-            // Las validaciones de campos vacíos o división por cero las maneja manejarCambioOperacion()
-            // Si el botón está habilitado, significa que los valores son válidos para la operación.
+            /* practicando */
 
             switch(valorSeleccionado) {
-                case "1": // Suma
+                case "1": 
                     resultado = num1 + num2;
                     claseColor = 'resultado-suma';
                     break;
-                case "2": // Resta
+                case "2": 
                     resultado = num1 - num2;
                     claseColor = 'resultado-resta';
                     break;
-                case "3": // Multiplicación
+                case "3": 
                     resultado = num1 * num2;
                     claseColor = 'resultado-multiplicacion';
                     break;
-                case "4": // División
+                case "4": 
                     resultado = num1 / num2;
                     claseColor = 'resultado-division';
                     break;
-                default: // Si no se selecciona ninguna operación válida (aunque debería ser evitado por la validación)
+                default: /* por si la moscas */
                     resultado = "Seleccione una operación";
                     claseColor = 'resultado-error';
                     break;
             }
             
             divResultado.innerText = resultado;
-            divResultado.className = claseColor; // Aplicar la clase de color
+            divResultado.className = claseColor; /* color */
         }
 
-        // Función para manejar el cambio en el selector de operación y las entradas de números
+        /* entrada de numeros y mas  */
         function manejarCambioOperacion() {
             const valorSeleccionado = document.getElementById('selectorOperacion').value;
-            const num1 = document.getElementById('numero1').value; // Obtener como string para verificar vacío
-            const num2 = document.getElementById('numero2').value; // Obtener como string para verificar vacío
+            const num1 = document.getElementById('numero1').value; 
+            const num2 = document.getElementById('numero2').value; 
             const botonCalcular = document.getElementById('botonCalcular');
             const divResultado = document.getElementById('divResultado');
 
-            // Reiniciar el div de resultado y su estilo al cambiar algo
+            
             divResultado.innerText = "0";
             divResultado.className = 'resultado-defecto';
 
-            // Condición para deshabilitar el botón:
-            // 1. Si los campos de números están vacíos.
-            // 2. Si la operación es división y el número2 es 0.
-            // 3. Si no se ha seleccionado ninguna operación (valor "0").
+            
             if (num1 === "" || num2 === "" || 
                 (valorSeleccionado === "4" && +num2 === 0) ||
                 valorSeleccionado === "0") {
                 
                 botonCalcular.disabled = true;
 
-                // Mensajes de error específicos en el divResultado
+                
                 if (num1 === "" || num2 === "") {
                     divResultado.innerText = "Ingrese ambos números";
                     divResultado.className = 'resultado-error';
@@ -109,11 +105,11 @@
                     divResultado.className = 'resultado-error';
                 }
             } else {
-                botonCalcular.disabled = false; // Habilita el botón si todo está bien
+                botonCalcular.disabled = false; 
             }
         }
 
-        // Ejecutar manejarCambioOperacion al cargar la página para establecer el estado inicial del botón
+        /* probando */ 
         window.onload = manejarCambioOperacion;
     </script>
 </body>
