@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtro de Palabras Automático</title>
+    
+    <style>
+        /*el css es con el impecinar del goole  */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .contenedor-filtro {
+            margin: 20px auto;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: rgb(75, 169, 164);
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .contenedor-lista {
+            margin: 20px auto;
+            padding: 10px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            min-width: 250px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        li:last-child {
+            border-bottom: none;
+        }
+        .mensaje-error {
+            color: yellow;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor-filtro">
+        <label for="textoFiltro">Filtrar Palabra:</label><br><br>
+        <input type="text" id="textoFiltro" placeholder=" que es lo que buscas " required oninput="filtrarPalabras()" /><br>
+        <div id="mensajeError" class="mensaje-error"></div><br>
+        <button id="botonMostrarTodo" onclick="mostrarTodasLasPalabras()">Mostrar Todo</button>
+    </div>
+
+    <div class="contenedor-lista">
+        <ul id="listaPalabras">
+        </ul>
+    </div>
+
+    <script>
+        const listaOriginal = ["manzana", "banana", "pera", "durazno", "frutilla", "mango", "arándano", "sandía"];
+
+        function mostrarListaEnHTML(listaAMostrar) {
+            const listaElemento = document.getElementById('listaPalabras');
+            listaElemento.innerHTML = '';
+
+            if (listaAMostrar.length === 0) {
+                const mensajeVacio = document.createElement('li');
+                mensajeVacio.innerText = "No se encontraron resultados.";
+                listaElemento.appendChild(mensajeVacio);
+                return;
+            }
+
+            listaAMostrar.forEach(palabra => {
+                const elementoLista = document.createElement("li");
+                elementoLista.innerText = palabra;
+                listaElemento.appendChild(elementoLista);
+            });
+        }
+
+        function filtrarPalabras() {
+            const textoFiltro = document.getElementById('textoFiltro').value.trim();
+            const mensajeError = document.getElementById('mensajeError');
+            
+            if (textoFiltro === "") {
+                mensajeError.innerText = "";
+                mostrarListaEnHTML(listaOriginal); 
+                return;
+            } else {
+                mensajeError.innerText = "";
+            }
+
+            const textoFiltroLower = textoFiltro.toLowerCase();
+
+            const resultadosFiltrados = listaOriginal.filter(palabra => 
+                palabra.toLowerCase().includes(textoFiltroLower)
+            );
+
+            mostrarListaEnHTML(resultadosFiltrados);
+        }
+
+        function mostrarTodasLasPalabras() {
+            document.getElementById('textoFiltro').value = "";
+            document.getElementById('mensajeError').innerText = "";
+            mostrarListaEnHTML(listaOriginal);
+        }
+
+        
+        mostrarListaEnHTML(listaOriginal);
+    </script>
+</body>
+</html>
