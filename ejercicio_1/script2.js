@@ -6,7 +6,7 @@ const botonCalcular = document.getElementById("botonCalcular");
 const divResultado = document.getElementById("divResultado");
 
 formulario.addEventListener("submit", function (e) {
-    e.preventDefault(); // Evita que se recargue la página
+    e.preventDefault(); 
 
     const n1Texto = numero1.value;
     const n2Texto = numero2.value;
@@ -88,10 +88,10 @@ function manejarCambioOperacion() {
     }
 }
 
-// Eventos de validación en tiempo real
+
 numero1.addEventListener("input", manejarCambioOperacion);
 numero2.addEventListener("input", manejarCambioOperacion);
 selectorOperacion.addEventListener("change", manejarCambioOperacion);
 
-// Ejecutar al inicio
+
 manejarCambioOperacion();
