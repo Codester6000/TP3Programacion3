@@ -3,30 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora Simple</title>
+    <title>Calculadora con Formulario</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <label>Ingrese un número (si la casilla está vacía no se podrá elegir la operación)</label><br>
-    <input type="number" id="numero1" placeholder="ingrese número 1" required oninput="manejarCambioOperacion()"/><br><br>
-    
-    <label>Ahora ingrese el segundo número para realizar la operación</label><br>
-    <input type="number" id="numero2" placeholder="ingrese número 2" required oninput="manejarCambioOperacion()"/><br><br>
 
-    <select id="selectorOperacion" onchange="manejarCambioOperacion()">
-        <option value="0" selected>Seleccione una Operación</option>    
-        <option value="1">Suma</option>
-        <option value="2">Resta</option>
-        <option value="3">Multiplicación</option>
-        <option value="4">División</option>
-    </select>
+    <form id="formulario">
+        <label>Ingrese un número (si la casilla está vacía no se podrá elegir la operación)</label><br>
+        <input type="number" id="numero1" placeholder="ingrese número 1" required /><br><br>
 
-    <button type="button" id="botonCalcular" onclick="realizarOperacion();">Calcular</button><br><br>
-    
-    <div id="divResultado" class="resultado-defecto">
-        0
-    </div>
-    
-    <script src="script.js"></script>
+        <label>Ahora ingrese el segundo número para realizar la operación</label><br>
+        <input type="number" id="numero2" placeholder="ingrese número 2" required /><br><br>
+
+        <select id="selectorOperacion">
+            <option value="0" selected>Seleccione una Operación</option>    
+            <option value="1">Suma</option>
+            <option value="2">Resta</option>
+            <option value="3">Multiplicación</option>
+            <option value="4">División</option>
+        </select>
+
+        <button type="submit" id="botonCalcular">Calcular</button><br><br>
+
+        <div id="divResultado" class="resultado-defecto">
+            0
+        </div>
+    </form>
+
+    <script src="script2.js"></script>
 </body>
 </html>
