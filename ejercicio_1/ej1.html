@@ -4,113 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora Simple</title>
-    <style>
-        /* agregamos colores para identificar la operacion (esto es pasajero ) */
-        .resultado-suma { color: blue; }
-        .resultado-resta { color: green; }
-        .resultado-multiplicacion { color: purple; }
-        .resultado-division { color: red; }
-        .resultado-defecto { color: black; } 
-        .resultado-error { color: orange; font-weight: bold; } /*  para errores */
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-        <label>ingrese un numero si la casilla esta vacia no se podra elegir la operacion </label><br>
-        <input type="number" id="numero1" placeholder="ingrese numero 1" required oninput="manejarCambioOperacion()"/><br><br>
-        
-        <label>Ahora Ingrese el segundo numero para realisar la operacion </label><br>
-        <input type="number" id="numero2" placeholder="ingrese numero 2" required oninput="manejarCambioOperacion()"/><br><br>
-
-        <select id="selectorOperacion" onchange="manejarCambioOperacion()">
-            <option value="0" selected>Seleccione una Operación</option>    
-            <option value="1">Suma</option>
-            <option value="2">Resta</option>
-            <option value="3">Multiplicación</option>
-            <option value="4">División</option>
-        </select>
-
-        <button type="button" id="botonCalcular" onclick="realizarOperacion();">Calcular</button><br><br>
-        
-        <div id="divResultado" class="resultado-defecto">
-            0
-        </div>
+    <label>Ingrese un número (si la casilla está vacía no se podrá elegir la operación)</label><br>
+    <input type="number" id="numero1" placeholder="ingrese número 1" required oninput="manejarCambioOperacion()"/><br><br>
     
-    <script>
-        /* Funcio operación */
-        function realizarOperacion() {
-            const valorSeleccionado = document.getElementById('selectorOperacion').value;
-            const num1 = +document.getElementById('numero1').value;
-            const num2 = +document.getElementById('numero2').value;
-            const divResultado = document.getElementById('divResultado');
-            let resultado = 0;
-            let claseColor = 'resultado-defecto';
+    <label>Ahora ingrese el segundo número para realizar la operación</label><br>
+    <input type="number" id="numero2" placeholder="ingrese número 2" required oninput="manejarCambioOperacion()"/><br><br>
 
-            /* practicando */
+    <select id="selectorOperacion" onchange="manejarCambioOperacion()">
+        <option value="0" selected>Seleccione una Operación</option>    
+        <option value="1">Suma</option>
+        <option value="2">Resta</option>
+        <option value="3">Multiplicación</option>
+        <option value="4">División</option>
+    </select>
 
-            switch(valorSeleccionado) {
-                case "1": 
-                    resultado = num1 + num2;
-                    claseColor = 'resultado-suma';
-                    break;
-                case "2": 
-                    resultado = num1 - num2;
-                    claseColor = 'resultado-resta';
-                    break;
-                case "3": 
-                    resultado = num1 * num2;
-                    claseColor = 'resultado-multiplicacion';
-                    break;
-                case "4": 
-                    resultado = num1 / num2;
-                    claseColor = 'resultado-division';
-                    break;
-                default: /* por si la moscas */
-                    resultado = "Seleccione una operación";
-                    claseColor = 'resultado-error';
-                    break;
-            }
-            
-            divResultado.innerText = resultado;
-            divResultado.className = claseColor; /* color */
-        }
-
-        /* entrada de numeros y mas  */
-        function manejarCambioOperacion() {
-            const valorSeleccionado = document.getElementById('selectorOperacion').value;
-            const num1 = document.getElementById('numero1').value; 
-            const num2 = document.getElementById('numero2').value; 
-            const botonCalcular = document.getElementById('botonCalcular');
-            const divResultado = document.getElementById('divResultado');
-
-            
-            divResultado.innerText = "0";
-            divResultado.className = 'resultado-defecto';
-
-            
-            if (num1 === "" || num2 === "" || 
-                (valorSeleccionado === "4" && +num2 === 0) ||
-                valorSeleccionado === "0") {
-                
-                botonCalcular.disabled = true;
-
-                
-                if (num1 === "" || num2 === "") {
-                    divResultado.innerText = "Ingrese ambos números";
-                    divResultado.className = 'resultado-error';
-                } else if (valorSeleccionado === "4" && +num2 === 0) {
-                    divResultado.innerText = "No se puede dividir por cero";
-                    divResultado.className = 'resultado-error';
-                } else if (valorSeleccionado === "0") {
-                    divResultado.innerText = "Seleccione una operación";
-                    divResultado.className = 'resultado-error';
-                }
-            } else {
-                botonCalcular.disabled = false; 
-            }
-        }
-
-        /* probando */ 
-        window.onload = manejarCambioOperacion;
-    </script>
+    <button type="button" id="botonCalcular" onclick="realizarOperacion();">Calcular</button><br><br>
+    
+    <div id="divResultado" class="resultado-defecto">
+        0
+    </div>
+    
+    <script src="script.js"></script>
 </body>
 </html>

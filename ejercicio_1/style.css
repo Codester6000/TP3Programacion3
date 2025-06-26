@@ -1,0 +1,68 @@
+.resultado-suma { 
+    color: blue; 
+}
+.resultado-resta { 
+    color: green; 
+}
+.resultado-multiplicacion { 
+    color: purple; 
+}
+.resultado-division { 
+    color: red; 
+}
+.resultado-defecto { 
+    color: black; 
+} 
+.resultado-error { 
+    color: orange; 
+    font-weight: bold; 
+} 
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f4f4f4;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+input[type="number"], select {
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+div#divResultado {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 2em;
+    min-width: 150px;
+    text-align: center;
+    background-color: #e9e9e9;
+}
