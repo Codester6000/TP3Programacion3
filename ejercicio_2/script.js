@@ -1,48 +1,32 @@
-const listaOriginal = ["manzana", "banana", "pera", "durazno", "frutilla", "mango", "arándano", "sandía"];
+const frutas = ['manzana','banana','pera','durazno','frutilla','mango']
+const palabra = document.getElementById('palabra')
+const formulario = document.getElementById('formulario')
+const error = document.getElementById('error')
+const listaPalabras = document.getElementById('listaPalabras')
 
-function mostrarListaEnHTML(listaAMostrar) {
-    const listaElemento = document.getElementById('listaPalabras');
-    listaElemento.innerHTML = '';
-
-    if (listaAMostrar.length === 0) {
-        const mensajeVacio = document.createElement('li');
-        mensajeVacio.innerText = "No se encontraron resultados.";
-        listaElemento.appendChild(mensajeVacio);
-        return;
-    }
-
-    listaAMostrar.forEach(palabra => {
-        const elementoLista = document.createElement("li");
-        elementoLista.innerText = palabra;
-        listaElemento.appendChild(elementoLista);
+function mostrarFrutas(frutasMostrar) {
+        listaPalabras.innerHTML = ''; 
+       
+    frutasMostrar.forEach(palabra => {
+        const li = document.createElement('li');
+        li.textContent = palabra;
+        listaPalabras.appendChild(li);
     });
 }
 
-function filtrarPalabras() {
-    const textoFiltro = document.getElementById('textoFiltro').value.trim();
-    const mensajeError = document.getElementById('mensajeError');
-    
-    if (textoFiltro === "") {
-        mensajeError.innerText = "";
-        mostrarListaEnHTML(listaOriginal); 
-        return;
+mostrarFrutas(frutas)
+
+formulario.addEventListener('submit', (e) => {
+    e.preventDefault();
+       
+    const palabraIngresada = palabra.value.toLowerCase();
+        
+    const palabrasFiltradas = frutas.filter(fruta => fruta.toLowerCase().includes(palabraIngresada));
+        
+    if (palabrasFiltradas.length === 0) {
+        error.textContent = 'No se encontraron coincidencias';
     } else {
-        mensajeError.innerText = "";
+        mostrarFrutas(palabrasFiltradas);
+        error.textContent = '';
     }
-
-    const textoFiltroLower = textoFiltro.toLowerCase();
-
-    const resultadosFiltrados = listaOriginal.filter(palabra => 
-        palabra.toLowerCase().includes(textoFiltroLower)
-    );
-
-    mostrarListaEnHTML(resultadosFiltrados);
-}
-
-function mostrarTodasLasPalabras() {
-    document.getElementById('textoFiltro').value = "";
-    document.getElementById('mensajeError').innerText = "";
-    mostrarListaEnHTML(listaOriginal);
-}
-
-mostrarListaEnHTML(listaOriginal);
+})

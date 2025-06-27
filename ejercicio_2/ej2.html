@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EJ2 Filtro de Palabras Automático</title>
+    <title>Ej2</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="contenedor-filtro">
-        <label for="textoFiltro">Filtrar Palabra:</label><br><br>
-        <input type="text" id="textoFiltro" placeholder="que es lo que buscas" required oninput="filtrarPalabras()" /><br>
-        <div id="mensajeError" class="mensaje-error"></div><br>
-        <button id="botonMostrarTodo" onclick="mostrarTodasLasPalabras()">Mostrar Todo</button>
-    </div>
 
-    <div class="contenedor-lista">
-        <ul id="listaPalabras">
-        </ul>
-    </div>
+<body>
+    <form id="formulario">
+        <div id="contenedor">
+            <label for="palabra">Palabra:</label>
+            <input type="text" id="palabra" placeholder="Ingrese una palabra">
+            <button type="submit">Filtrar</button>
+        </div>
+    </form>
+    <p id="error"></p>
+    <h1>Frutas:</h1>
+    <ul id="listaPalabras"></ul>
 
     <script src="script.js"></script>
 </body>
+
 </html>
